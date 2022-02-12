@@ -90,6 +90,8 @@ class CustomerRepositoryIT {
 		Customer customer=null;
 		Optional<Customer> customerOptional=null;
 		
+		assertTrue(customerRepository.findById(idCustomer).isPresent(),"No encontro el customer");
+		
 		customer=customerRepository.findById(idCustomer).get();
 		
 		//Act
