@@ -41,10 +41,19 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	@Transactional(readOnly = false,propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false,propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 	public Customer save(Customer entity) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if(entity==null) {
+			throw new Exception("El customer es nulo");
+		}
+		
+		validate(entity);
+		
+		if(customerRepository.existsById(entity.getCustId())) {
+			throw new Exception("El cliente ya existe");
+		}
+		
+		return customerRepository.save(entity);
 	}
 
 	@Override
