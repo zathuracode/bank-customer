@@ -75,7 +75,30 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@Transactional(readOnly = false,propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 	public void delete(Customer entity) throws Exception {
-		// TODO Auto-generated method stub
+		
+		if(entity==null) {
+			throw new Exception("El customer es nulo");
+		}
+		
+		if(entity.getCustId()==null) {
+			throw new Exception("El customer id es nulo");
+		}
+		
+		if(customerRepository.existsById(entity.getCustId())==false) {
+			throw new Exception("El customer no existe");
+		}
+		
+		findById(entity.getCustId()).ifPresent(customer->{
+			if(customer.getAccounts()!=null && customer.getAccounts().isEmpty()==false) {
+				throw new RuntimeException("El customer tiene cuentas asociadas");
+			}
+			
+			if(customer.getRegisteredAccounts()!=null && customer.getRegisteredAccounts().isEmpty()==false) {
+				throw new RuntimeException("El customer tiene cuentas registradas asociadas");
+			}		
+		});
+		
+		customerRepository.deleteById(entity.getCustId());
 		
 	}
 
