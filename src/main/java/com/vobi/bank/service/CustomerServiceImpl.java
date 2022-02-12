@@ -2,7 +2,10 @@ package com.vobi.bank.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,14 +108,22 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@Transactional(readOnly = false,propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 	public void deleteById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
+		if(id==null)
+			throw new Exception("El id es nulo");
 		
+		if(customerRepository.existsById(id)==false) {
+			throw new Exception("El customer no existe");
+		}
+		
+		delete(customerRepository.findById(id).get());	
 	}
 
 	@Override
 	public void validate(Customer entity) throws Exception {
-		// TODO Auto-generated method stub
-		
+		Set<ConstraintViolation<Customer>> constraintViolations=validator.validate(entity);
+		if(constraintViolations.isEmpty()==false) {
+			throw new ConstraintViolationException(constraintViolations);
+		}		
 	}
 
 	
