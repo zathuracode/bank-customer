@@ -28,10 +28,13 @@ public class CustomerController {
 		//Customer customer=(customerService.findById(id).isPresent()==true)?customerService.findById(id).get():null;
 		
 		Customer customer=null;
+		CustomerDTO customerDTO=null;
 		if(customerService.findById(id).isPresent()==true)
 			customer=customerService.findById(id).get();
 		
-		return customerMapper.customerToCustomerDTO(customer);
+		customerDTO=customerMapper.customerToCustomerDTO(customer);
+		
+		return customerDTO;
 	}
 	
 	@GetMapping()
