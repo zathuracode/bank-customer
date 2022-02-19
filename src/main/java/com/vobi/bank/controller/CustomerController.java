@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vobi.bank.domain.Customer;
+import com.vobi.bank.dto.CustomerDTO;
 import com.vobi.bank.service.CustomerService;
 
 @RestController
@@ -18,7 +18,10 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	@GetMapping()
-	public List<Customer> findAll()throws Exception{
+	public List<CustomerDTO> findAll()throws Exception{
+		
+		
+		
 		return null;
 	}
 
