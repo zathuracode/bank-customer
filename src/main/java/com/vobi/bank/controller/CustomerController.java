@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,16 @@ public class CustomerController {
 	
 	@Autowired
 	CustomerMapper customerMapper;
+	
+	
+	@PutMapping
+	public CustomerDTO update(@Valid @RequestBody CustomerDTO customerDTO)throws Exception{
+		Customer customer=customerMapper.customerDTOtoCustomer(customerDTO);
+		customer=customerService.update(customer);
+		customerDTO=customerMapper.customerToCustomerDTO(customer);
+		
+		return customerDTO;
+	}
 	
 	@PostMapping
 	public CustomerDTO save(@Valid @RequestBody CustomerDTO customerDTO)throws Exception{
