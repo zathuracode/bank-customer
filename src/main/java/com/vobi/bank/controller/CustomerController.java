@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,17 @@ public class CustomerController {
 	@Autowired
 	CustomerMapper customerMapper;
 	
+	@GetMapping("/{id}")
+	public CustomerDTO findById(@PathVariable("id") Integer id) throws Exception{
+		//Customer customer=(customerService.findById(id).isPresent()==true)?customerService.findById(id).get():null;
+		
+		Customer customer=null;
+		if(customerService.findById(id).isPresent()==true)
+			customer=customerService.findById(id).get();
+		
+		return customerMapper.customerToCustomerDTO(customer);
+	}
+	
 	@GetMapping()
 	public List<CustomerDTO> findAll()throws Exception{
 		
@@ -30,5 +42,7 @@ public class CustomerController {
 		
 		return customerDTOs;
 	}
+	
+	
 
 }
