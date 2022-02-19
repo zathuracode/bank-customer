@@ -2,6 +2,8 @@ package com.vobi.bank.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +28,7 @@ public class CustomerController {
 	CustomerMapper customerMapper;
 	
 	@PostMapping
-	public CustomerDTO save(@RequestBody CustomerDTO customerDTO)throws Exception{
+	public CustomerDTO save(@Valid @RequestBody CustomerDTO customerDTO)throws Exception{
 		Customer customer=customerMapper.customerDTOtoCustomer(customerDTO);
 		customer=customerService.save(customer);
 		customerDTO=customerMapper.customerToCustomerDTO(customer);
