@@ -54,22 +54,22 @@ public class Customer implements java.io.Serializable {
 	private String email;
 
 	@NotNull
-	@Size(min = 1,max = 1)
+	@Size(min = 1, max = 1)
 	@Column(name = "enable", nullable = false)
 	private String enable;
 
 	@NotNull
-	@Size(min = 1,max = 100)
+	@Size(min = 1, max = 100)
 	@Column(name = "name", nullable = false)
 	private String name;
 
 	@NotNull
-	@Size(min = 1,max = 100)
+	@Size(min = 1, max = 100)
 	@Column(name = "phone", nullable = false)
 	private String phone;
-	
+
 	@NotNull
-	@Size(min = 1,max = 100)
+	@Size(min = 1, max = 100)
 	@Column(name = "token")
 	private String token;
 

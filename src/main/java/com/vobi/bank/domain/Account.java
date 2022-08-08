@@ -46,13 +46,11 @@ public class Account implements java.io.Serializable {
 
 	@Column(name = "password", nullable = false)
 	private String password;
-	
+
 	@Column(name = "version", nullable = true)
 	private Long version;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
 	private List<RegisteredAccount> registeredAccounts = new ArrayList<>();
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
-	private List<Transaction> transactions = new ArrayList<>();
 
 }

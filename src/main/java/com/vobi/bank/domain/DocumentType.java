@@ -35,7 +35,6 @@ public class DocumentType implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer dotyId;
 
-
 	@Column(name = "enable", nullable = false)
 	private String enable;
 

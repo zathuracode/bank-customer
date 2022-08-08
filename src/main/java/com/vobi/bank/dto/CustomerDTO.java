@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDTO {
-	
+
 	@NotNull
 	private Integer custId;
-	
+
 	@NotNull
 	private Integer dotyId;
-	
+
 	@NotNull
 	@Size(min = 3, max = 100)
 	private String address;
@@ -28,19 +28,19 @@ public class CustomerDTO {
 	private String email;
 
 	@NotNull
-	@Size(min = 1,max = 1)
+	@Size(min = 1, max = 1)
 	private String enable;
 
 	@NotNull
-	@Size(min = 1,max = 100)
+	@Size(min = 1, max = 100)
 	private String name;
 
 	@NotNull
-	@Size(min = 1,max = 100)
+	@Size(min = 1, max = 100)
 	private String phone;
-	
+
 	@NotNull
-	@Size(min = 1,max = 100)
+	@Size(min = 1, max = 100)
 	private String token;
 
 }

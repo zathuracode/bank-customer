@@ -3,22 +3,22 @@ package com.vobi.bank.service;
 import java.util.List;
 import java.util.Optional;
 
-public interface GenericService<T,ID> {
-	
-	 List<T> findAll();
+public interface GenericService<T, ID> {
 
-	 Optional<T> findById(ID id);
+	List<T> findAll();
 
-	 T save(T entity) throws Exception;
+	Optional<T> findById(ID id);
 
-	 T update(T entity) throws Exception;
+	T save(T entity) throws Exception;
 
-	 void delete(T entity) throws Exception;
+	T update(T entity) throws Exception;
 
-	 void deleteById(ID id) throws Exception;
+	void delete(T entity) throws Exception;
 
-	 void validate(T entity) throws Exception;
+	void deleteById(ID id) throws Exception;
 
-	 Long count();
+	void validate(T entity) throws Exception;
+
+	Long count();
 
 }
